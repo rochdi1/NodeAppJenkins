@@ -19,6 +19,9 @@ root@{container id}:/#
 root@{container id}:/# ls
 root@{container id}:/# groupadd -for -g $DOCKER_GID docker
 root@{container id}:/# usermod -aG docker jenkins
+root@{container id}:/# apt update
+root@{container id}:/# apt install node
+root@{container id}:/# apt install npm
 root@{container id}:/# exit
 > docker restart jenkins-docker
 // jenkins-docker
