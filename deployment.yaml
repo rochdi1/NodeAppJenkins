@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: iquantc/iquant-app:latest
+        image: rochdi1/nodeJs-repo-app:latest
         ports:
         - containerPort: 3000
       imagePullSecrets:
