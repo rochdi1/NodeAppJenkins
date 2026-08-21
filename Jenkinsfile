@@ -12,7 +12,12 @@ pipeline {
 			steps {
 				git branch: 'main', credentialsId: 'jen-doc-git', url: 'https://github.com/rochdi1/NodeAppJenkins.git'
 			}
-		}		
+		}
+	  stage('npm version'){
+			steps {
+				sh 'npm version'
+			}
+		}
 		stage('Install node dependencies'){
 			steps {
 				sh 'npm install'
