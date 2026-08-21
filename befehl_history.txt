@@ -1,0 +1,44 @@
+> getent group docker
+//docker:x:988:iquant
+> which docker
+// usr/bin/docker
+> docker run -d --name jenkins-docker \
+-p 8080:8080 -p 50000:50000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v $(which docker):/usr/bin/docker \
+-u root \
+-e DOCKER_GID=$(getent group docker | cut -d: -f3) \
+jenkins/jenkins:lts
+> clear
+> docker ps
+> docker logs -f {container id}
+// pass copieren
+// in browser localhost:8080 open
+> docker exec -it jenkins-docker bash
+root@{container id}:/#
+root@{container id}:/# ls
+root@{container id}:/# groupadd -for -g $DOCKER_GID docker
+root@{container id}:/# usermod -aG jenkins
+root@{container id}:/# exist
+> docker restart jenkins-docker
+// jenkins-docker
+// localhost:8080 open
+// https://github.com/settings/apps
+// Personal access tokens > tokens (classic) 
+// Generate new Token > Generate new Token (classic)
+// Note:jen-doc-git + repo + admin:repo_hook
+// in browser localhost:8080 open
+// Dashboard > Manage Jenkins > Credentials
+// add new credentials + Username:rochd1 + password:{github token} + ID:jen-doc-git + Decription:Jenkins Docker GitHub Token + create(Button)
+// create job als Pipeline job:NodeApp + Pipeline >SCM:Git+url:https://github.com/rochdi1/NodeAppJenkins.git+Credential:rochdi1+Script Path:Jenkinsfile
+> node -v
+//v16...
+> npm -v
+//8...
+// localhost:8080 open Dashboard>Manage Jenkins>Plugin search:NodeJS  >install + reinstall
+> docker restart {container id}
+// localhost:8080 open Dashboard>Manage Jenkins>Tools Name:NodeJS + Install automatically Version:NodeJS 22.8.0
+// localhost:8080 open Dashboard>Manage Jenkins>Plugin search:Docker(cloud Provider cluster Management docker) + Docker Pipeline >install + reinstall
+> docker restart {container id}
+// localhost:8080 open Dashboard>Manage Jenkins>Tools Docker installation +Docker Name:Docker+Install automatically (checkbox)
+//+Download from docker.com Docker version:latest + save(Button)
