@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	tools {
-		nodejs 'NodeJS Plugin'
+		nodejs 'NodeJS'
 	}
 	environment {
 		DOCKER_HUB_CREDENTIALS_ID = 'jen-dockerhub'
