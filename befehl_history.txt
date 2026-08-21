@@ -18,7 +18,7 @@ jenkins/jenkins:lts
 root@{container id}:/#
 root@{container id}:/# ls
 root@{container id}:/# groupadd -for -g $DOCKER_GID docker
-root@{container id}:/# usermod -aG jenkins
+root@{container id}:/# usermod -aG docker jenkins
 root@{container id}:/# exist
 > docker restart jenkins-docker
 // jenkins-docker
